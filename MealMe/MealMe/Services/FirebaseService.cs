@@ -18,7 +18,8 @@ public class FirebaseService
     // Create client for sending/receiving http messages \\
     private HttpClient httpclient;
     // API key for firebase Auth for this project \\
-    private const string APIKEY = "AIzaSyCsGnAtnh2F-fDD21DRjUOJxWV7EaEooSE";
+    // PLEASE FILL AN FIREBASE AUTHENTICATION API KEY
+    private const string APIKEY = "";
 
     // Constructor \\
     public FirebaseService()
