@@ -16,7 +16,8 @@ namespace MealMe.Services;
 public class SpoonacularService
 {
     // My API Key for spoonacular api \\
-    private const string APIKEY = "e3a8bedc72684236aa1763b76f6b5fec";
+    // PLEASE FILL IN A SPOONACULAR API KEY
+    private const string APIKEY = "";
     // Http client for sending/receiving http messages \\
     private HttpClient httpClient;
 
