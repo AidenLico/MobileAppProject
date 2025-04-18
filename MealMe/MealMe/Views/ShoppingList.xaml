@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealMe.Views.ShoppingList"
+             Title="ShoppingList"
+             BackgroundColor="{Binding BackgroundColour}">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
+              ColumnDefinitions=".5*, .5*">
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="Shopping List"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0, 40"/>
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Week Starting:"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <!-- Displays current week starting date -->
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding Date}"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <!-- Previous and next week command buttons -->
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Previous"
+                    Command="{Binding PreviousWeekCommand}"
+                    BackgroundColor="{Binding ButtonColour}"
+                    TextColor="Black"
+                    Margin="30, 10, 60, 10"/>
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Next"
+                    Command="{Binding NextWeekCommand}"
+                    BackgroundColor="{Binding ButtonColour}"
+                    TextColor="Black"
+                    Margin="60, 10, 30, 10"/>
+            <!-- Command for storing the loaded list to cloud -->
+            <Button Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Store List in Cloud!"
+                    Command="{Binding StoreListCommand}"
+                    BackgroundColor="{Binding ButtonColour}"
+                    TextColor="Black"
+                    HorizontalOptions="Center"/>
+            <!-- Displays errors storing to cloud -->
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="{Binding CloudError}"
+                   FontSize="Medium"
+                   TextColor="Red"
+                   HorizontalOptions="Center"/>
+            <!-- Displays loading status-->
+            <Label Grid.Row="5"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Text="{Binding Loading}"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"/>
+            <!-- Displays the generated shopping list-->
+            <CollectionView Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding ShoppingList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="Auto"
+                              ColumnDefinitions=".6*, .10*, .5*, .25*"
+                              Margin="0,20">
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding IngredientName}"
+                                   FontSize="Small"
+                                   Margin="20, 0"/>
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding Amount}"
+                                   FontSize="Small"
+                                   HorizontalOptions="Center"/>
+                            <Label Grid.Row="0"
+                                   Grid.Column="2"
+                                   Text="{Binding Measurement}"
+                                   HorizontalOptions="Center"/>
+                            <CheckBox Grid.Row="0"
+                                      Grid.Column="4"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>

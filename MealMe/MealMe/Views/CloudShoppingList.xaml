@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealMe.Views.CloudShoppingList"
+             Title="CloudShoppingList"
+             BackgroundColor="{Binding BackgroundColour}">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, *"
+              ColumnDefinitions="*">
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Cloud Stored Shopping List"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0, 40"/>
+            <!-- Command to delete the cloud stored shopping list -->
+            <Button Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Delete"
+                    BackgroundColor="Red"
+                    TextColor="Black"
+                    Margin="150, 0"
+                    Command="{Binding DeleteCommand}"/>
+            <!-- Colection view for the found Cloud list -->
+            <CollectionView Grid.Row="2"
+                            Grid.Column="0"
+                            ItemsSource="{Binding CloudList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="Auto"
+                              ColumnDefinitions=".6*, .10*, .5*, .25*"
+                              Margin="0,20">
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding IngredientName}"
+                                   FontSize="Medium"
+                                   Margin="20, 0"/>
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding Amount}"
+                                   FontSize="Small"
+                                   HorizontalOptions="Center"/>
+                            <Label Grid.Row="0"
+                                   Grid.Column="2"
+                                   Text="{Binding Measurement}"
+                                   HorizontalOptions="Center"/>
+                            <CheckBox Grid.Row="0"
+                                      Grid.Column="4"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>

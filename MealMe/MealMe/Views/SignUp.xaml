@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealMe.Views.SignUp"
+             Title="SignUp"
+             BackgroundColor="{Binding BackgroundColour}">
+    <VerticalStackLayout>
+        <ScrollView>
+            <!-- Grid layout, rows for header, sub header and body -->
+            <Grid RowDefinitions="Auto, Auto, *"
+                  Padding="35">
+                <!-- Header -->
+                <Label Grid.Row="0"
+                       Text="Sign Up"
+                       FontSize="Large"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+                <!-- Subheader -->
+                <Label Grid.Row="1"
+                       Text="Create Your Account"
+                       FontSize="Small"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+                <!-- Stack Layout in body for login form -->
+                <StackLayout Grid.Row="2"
+                             HorizontalOptions="Fill"
+                             VerticalOptions="Start"
+                             Padding="0, 70"
+                             Spacing="10">
+                    <!-- Email address input -->
+                    <Label Text="Email Address"/>
+                    <Entry Text="{Binding Email}"
+                           Placeholder="example@mail.co.uk" 
+                           Keyboard="Email"/>
+                    <!-- Password input -->
+                    <Label Text="Password"/>
+                    <Entry Text="{Binding Password}"
+                           Placeholder="Password" 
+                           IsPassword="True"/>
+                    <Label Text="{Binding Alert}"
+                           TextColor="Red"
+                           FontAttributes="Bold"/>
+                    <!-- Command button for registering user-->
+                    <Button Text="Register"
+                            Command="{Binding RegisterUserCommand}"
+                            BackgroundColor="{Binding ButtonColour}"
+                            TextColor="Black"/>
+                    <Label Text="Or"
+                           FontSize="Medium"
+                           HorizontalOptions="Center"/>
+                    <!-- Command for login redirect -->
+                    <Button Text="Log In"
+                            Command="{Binding LoginRedirectCommand}"
+                            BackgroundColor="{Binding ButtonColour}"
+                            TextColor="Black"/>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

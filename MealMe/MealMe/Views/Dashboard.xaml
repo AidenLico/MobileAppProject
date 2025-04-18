@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Dashboard (main) page of mobile application, will be populated with data to come -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealMe.Views.Dashboard"
+             Title="Dashboard"
+             BackgroundColor="{Binding BackgroundColour}">
+    <!-- Declaring Grid layout for general structure of dashboard, 2 rows 1 column for now as there is only a header and body -->
+    <Grid RowDefinitions="Auto, *"
+          RowSpacing="100">
+        <!-- Embedded grid layout for menu in row 0 of parent grid, has 3 columns, 1 for logo, title and login button -->
+        <Grid Grid.Row="0"
+              ColumnDefinitions=".25*, .5*, .25*"
+              BackgroundColor="{Binding MenuColour}"
+              Padding="20">
+            <!-- Logo -->
+            <Image Grid.Column="0"
+                   HeightRequest="40"
+                   Source="dotnet_bot.png"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+            <!-- Header -->
+            <Label Grid.Column="1"
+                   Text="MealMe"
+                   FontSize="Large"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+        </Grid>
+        <ScrollView Grid.Row="1"
+                    HorizontalOptions="Center">
+            <StackLayout Padding="50, 0">
+                <Label Text="Today"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+                <Label Text="Breakfast"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+                <!-- Displays today Breakfast -->
+                <Label Text="{Binding Breakfast}"
+                       FontSize="Medium"/>
+                <!-- More info on this meal -->
+                <Button Text="More Info"
+                        Command="{Binding MoreInfoCommand}"
+                        CommandParameter="Breakfast"
+                        BackgroundColor="{Binding ButtonColour}"
+                        TextColor="Black"
+                        Margin="80, 20"/>
+                <Label Text="Lunch"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+                <!-- Displays today Lunch -->
+                <Label Text="{Binding Lunch}"
+                       FontSize="Medium"/>
+                <Button Text="More Info"
+                        Command="{Binding MoreInfoCommand}"
+                        CommandParameter="Lunch"
+                        BackgroundColor="{Binding ButtonColour}"
+                        TextColor="Black"
+                        Margin="80, 20"/>
+                <Label Text="Dinner"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+                <!-- Displays today dinner -->
+                <Label Text="{Binding Dinner}"
+                       FontSize="Medium"/>
+                <Button Text="More Info"
+                        Command="{Binding MoreInfoCommand}"
+                        CommandParameter="Dinner"
+                        BackgroundColor="{Binding ButtonColour}"
+                        TextColor="Black"
+                        Margin="80, 20"/>
+                <Label Text="Snack"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+                <!-- Displays today snack -->
+                <Label Text="{Binding Snack}"
+                       FontSize="Medium"/>
+                <Button Text="More Info"
+                        Command="{Binding MoreInfoCommand}"
+                        CommandParameter="Snack"
+                        BackgroundColor="{Binding ButtonColour}"
+                        TextColor="Black"
+                        Margin="80, 20"/>
+                <!-- Collection view displays information for the meal which user got more info on -->
+                <CollectionView ItemsSource="{Binding Info}"
+                                Margin="0, 40">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                                  ColumnDefinitions=".5*, .5*">
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Current Meal:"/>
+                                <Label Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding CurrentMeal}"/>
+                                <Label Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Serves:"/>
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding Servings}"/>
+                                <Label Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Ready In (minutes):"/>
+                                <Label Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding Ready}"/>
+                                <Label Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="Cook Time (minutes):"/>
+                                <Label Grid.Row="3"
+                                       Grid.Column="1"
+                                       Text="{Binding Cooking}"/>
+                                <Label Grid.Row="4"
+                                       Grid.Column="0"
+                                       Text="Preparation (minutes):"/>
+                                <Label Grid.Row="4"
+                                       Grid.Column="1"
+                                       Text="{Binding Preparation}"/>
+                                <Label Grid.Row="5"
+                                       Grid.Column="0"
+                                       Text="Price Per Serving (pennies):"/>
+                                <Label Grid.Row="5"
+                                       Grid.Column="1"
+                                       Text="{Binding Price}"/>
+                                <Label Grid.Row="6"
+                                       Grid.Column="0"
+                                       Text="Recipe:"/>
+                                <Label Grid.Row="6"
+                                       Grid.Column="1"
+                                       Text="{Binding Recipe}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

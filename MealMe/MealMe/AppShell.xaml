@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Shell for structuring of pages, currently only flyout will have tabbar on dashboard -->
+<Shell
+    x:Class="MealMe.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MealMe.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="MealMe"
+    BackgroundColor="{Binding ShellColour}"
+    FlyoutBackgroundColor="#deedde">
+    <!-- Flyout item for dashboard page -->
+    <FlyoutItem Title="Dashboard">
+        <ShellContent ContentTemplate="{DataTemplate views:Dashboard}"
+                          Route="Dashboard"
+                          Shell.FlyoutBehavior="Flyout"/>
+    </FlyoutItem>
+    <!-- Flyout item for Meal Plan page, with tab bar setup-->
+    <FlyoutItem Title="Meal Plan">
+        <!-- Tab for the Meals page -->
+        <Tab Title="Meals">
+            <ShellContent ContentTemplate="{DataTemplate views:MealPlan}"
+                          Route="MealPlan"
+                          Shell.FlyoutBehavior="Flyout"/>
+        </Tab>
+        <!-- Tab for the add meal page -->
+        <Tab Title="Add Meal">
+            <ShellContent ContentTemplate="{DataTemplate views:AddMeal}"
+                          Route="AddMeal"
+                          Shell.FlyoutBehavior="Flyout"/>
+
+        </Tab>
+    </FlyoutItem>
+    <!-- Flyout for the shopping list page -->
+    <FlyoutItem Title="Shopping List">
+        <!-- Tab for the shopping list page-->
+        <Tab Title="Shopping List">
+            <ShellContent ContentTemplate="{DataTemplate views:ShoppingList}"
+                          Route="ShoppingList"
+                          Shell.FlyoutBehavior="Flyout"/>
+        </Tab>
+        <!-- Tab for the cloud shopping list page-->
+        <Tab Title="Cloud Shopping List">
+            <ShellContent ContentTemplate="{DataTemplate views:CloudShoppingList}"
+                          Route="CloudShoppingList"
+                          Shell.FlyoutBehavior="Flyout"/>
+        </Tab>
+    </FlyoutItem>
+    <!-- Flyout for settings page -->
+    <FlyoutItem Title="Settings">
+        <!-- Tab for user settings page-->
+        <Tab Title="User Settings">
+            <ShellContent ContentTemplate="{DataTemplate views:UserSettings}"
+                          Route="UserSettings"
+                          Shell.FlyoutBehavior="Flyout"/>
+        </Tab>
+        <!-- Tab for the UI settings page-->
+        <Tab Title="UI Settings">
+            <ShellContent ContentTemplate="{DataTemplate views:UISettings}"
+                          Route="UISettings"
+                          Shell.FlyoutBehavior="Flyout"/>
+        </Tab>
+    </FlyoutItem>
+    
+    <!-- Login page and Signup page, flyout disabled, also disabled it from flyout -->
+
+    <ShellContent Route="Login"
+                  ContentTemplate="{DataTemplate views:Login}"
+                  Shell.FlyoutBehavior="Disabled"
+                  Shell.FlyoutItemIsVisible="False"/>
+
+    <ShellContent Route="SignUp"
+                  ContentTemplate="{DataTemplate views:SignUp}"
+                  Shell.FlyoutBehavior="Disabled"
+                  Shell.FlyoutItemIsVisible="False"/>
+   
+</Shell>

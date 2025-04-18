@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- User settings page, allows user to edit their email (WIP) and their password-->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealMe.Views.UserSettings"
+             Title="UserSettings"
+             BackgroundColor="{Binding BackgroundColour}">
+    <!-- Create grid for structure, 3 sections, 1 for title, 1 for email change
+    and 1 for password change-->
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+          Padding="35">
+        <!-- Title of page -->
+        <Label Grid.Row="0"
+               Text="User Settings"
+               FontSize="Large"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"/>
+        <!-- Stack Layout for containing user email and change email field and
+        button-->
+        <StackLayout Grid.Row="1"
+                     Padding="0, 35">
+            <!-- Grid for keeping "Current Email:" and the users email
+            on same line-->
+            <Grid ColumnDefinitions=".5*, .5*">
+                <Label Grid.Column="0"
+                       Text="Current Email:"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Start"/>
+                <Label Grid.Column="1"
+                       Text="{Binding Email}"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+            </Grid>
+        </StackLayout>
+        <!-- Stack layout for current password, new password and change password
+        button -->
+        <StackLayout Grid.Row="2"
+                     Padding="0, 35">
+            <Label Text="Change Password"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Padding="0,0,0,35"/>
+            <!-- Current password user input-->
+            <Entry Text="{Binding Password}"
+                   Placeholder="Current Password"
+                   IsPassword="True"/>
+            <!-- New password user input -->
+            <Entry Text="{Binding NewPassword}"
+                   Placeholder="New Password"
+                   IsPassword="True"/>
+            <!-- Displays alerts -->
+            <Label Text="{Binding PasswordAlert}"
+                   TextColor="Red"
+                   FontSize="Medium"
+                   FontAttributes="Bold"/>
+            <!-- Button for running change password command -->
+            <Button Text="Change Password"
+                    Command="{Binding ChangePasswordCommand}"
+                    BackgroundColor="{Binding ButtonColour}"
+                    TextColor="Black"/>
+
+        </StackLayout>
+        <!-- Button which allows the user to logout-->
+        <Button Grid.Row="3"
+                HorizontalOptions="Center"
+                Text="Logout"
+                Command="{Binding LogoutCommand}"
+                Background="Red"
+                TextColor="Black"/>
+    </Grid>
+</ContentPage>

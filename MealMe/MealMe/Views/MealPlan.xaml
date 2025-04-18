@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MealMe.ViewModels"
+             x:Class="MealMe.Views.MealPlan"
+             Title="MealPlan"
+             BackgroundColor="{Binding BackgroundColour}">
+    <!-- Scroll view as can be many items on this page-->
+    <ScrollView>
+        <Grid RowDefinitions="Auto, *"
+          RowSpacing="30">
+            <!-- Embedded grid layout for menu in row 0 of parent grid, has 3 columns, 1 for logo, title and login button -->
+            <Grid Grid.Row="0"
+              ColumnDefinitions=".25*, .5*, .25*"
+              BackgroundColor="{Binding MenuColour}"
+              Padding="20">
+                <!-- Logo -->
+                <Image Grid.Column="0"
+                   HeightRequest="40"
+                   Source="dotnet_bot.png"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+                <!-- Header -->
+                <Label Grid.Column="1"
+                   Text="MealMe"
+                   FontSize="Large"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+            </Grid>
+            <!-- grid contains header and body of meal plans-->
+            <Grid Grid.Row="1"
+                  RowDefinitions="Auto, Auto, Auto, *"
+                  ColumnDefinitions=".5*, .5*">
+                <!-- Header -->
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Text="Meal Plan"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Week Starting:"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+                <!-- Displays current week starting date -->
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Date}"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+                <!-- Command to go previous button -->
+                <Button Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Previous"
+                        Command="{Binding PreviousWeekCommand}"
+                        BackgroundColor="{Binding ButtonColour}"
+                        TextColor="Black"
+                        Margin="30, 10, 60, 10"/>
+                <!-- Command to go next button -->
+                <Button Grid.Row="2"
+                        Grid.Column="1"
+                        Text="Next"
+                        Command="{Binding NextWeekCommand}"
+                        BackgroundColor="{Binding ButtonColour}"
+                        TextColor="Black"
+                        Margin="60, 10, 30, 10"/>
+                <!-- Stack layout of meal plans-->
+                <StackLayout Grid.Row="3"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2">
+                    <!-- Collection View displays meal plans for the week -->
+                    <!-- Made use of the following dotnet video to help with observable collection-->
+                    <!-- https://www.youtube.com/watch?v=5Qga2pniN78 -->
+                    <CollectionView ItemsSource="{Binding MealPlans}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding Date}"
+                                           FontSize="Medium"
+                                           HorizontalOptions="Center"/>
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItem Text="Remove"
+                                                           BackgroundColor="Red"
+                                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MealPlanVM}}, Path=RemoveCommand}"
+                                                           CommandParameter="{Binding .}"/>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+                                        <Border Stroke="Black"
+                                                StrokeThickness="2"
+                                                Padding="20"
+                                                Margin="20">
+                                            <Grid RowDefinitions="Auto, Auto, Auto, Auto"
+                                                  ColumnDefinitions=".5*, .5*">
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="0"
+                                                       Text="Breakfast:"
+                                                       FontSize="Small"/>
+                                                <Label Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Text="{Binding Breakfast}"
+                                                       FontSize="Small"
+                                                       FontAttributes="Bold"/>
+                                                <Label Grid.Row="1"
+                                                       Grid.Column="0"
+                                                       Text="Lunch:"
+                                                       FontSize="Small"/>
+                                                <Label Grid.Row="1"
+                                                       Grid.Column="1"
+                                                       Text="{Binding Lunch}"
+                                                       FontSize="Small"
+                                                       FontAttributes="Bold"/>
+                                                <Label Grid.Row="2"
+                                                       Grid.Column="0"
+                                                       Text="Dinner:"
+                                                       FontSize="Small"/>
+                                                <Label Grid.Row="2"
+                                                       Grid.Column="1"
+                                                       Text="{Binding Dinner}"
+                                                       FontSize="Small"
+                                                       FontAttributes="Bold"/>
+                                                <Label Grid.Row="3"
+                                                       Grid.Column="0"
+                                                       Text="Snack:"
+                                                       FontSize="Small"/>
+                                                <Label Grid.Row="3"
+                                                       Grid.Column="1"
+                                                       Text="{Binding Snack}"
+                                                       FontSize="Small"
+                                                       FontAttributes="Bold"/>
+                                            </Grid>
+                                        </Border>
+                                    </SwipeView>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

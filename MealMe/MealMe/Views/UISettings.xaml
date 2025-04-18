@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MealMe.Views.UISettings"
+             Title="UISettings"
+             BackgroundColor="{Binding BackgroundColour}">
+    <Grid RowDefinitions="Auto, Auto"
+          ColumnDefinitions="*">
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Text="UI Settings"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               Margin="0, 40"/>
+        <StackLayout Grid.Row="1"
+                     Grid.Column="0"
+                     Margin="0, 20"
+                     HorizontalOptions="Center">
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*">
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Preffered Colour"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+                <!-- Picker of colours and selected colour is binded -->
+                <Picker Grid.Row="1"
+                        Grid.Column="0"
+                        Title="Select Colour"
+                        ItemsSource="{Binding Colours}"
+                        SelectedItem="{Binding SelectedColour}"
+                        Margin="0, 20"/>
+            </Grid>
+
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*"
+                  Margin="0, 60">
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Preffered Style"
+                       FontSize="Medium"
+                       FontAttributes="Bold"/>
+                <!-- Picker of styles and selected is binded-->
+                <Picker Grid.Row="1"
+                        Grid.Column="0"
+                        Title="Select Style"
+                        ItemsSource="{Binding Styles}"
+                        SelectedItem="{Binding SelectedStyle}"/>
+            </Grid>
+            <!-- Command Updates the colour and style preferences -->
+            <Button Text="Save Changes"
+                    BackgroundColor="{Binding ButtonColour}"
+                    TextColor="Black"
+                    Command="{Binding UpdateCommand}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
